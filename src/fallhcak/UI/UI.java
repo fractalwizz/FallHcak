@@ -1,10 +1,7 @@
 package fallhcak.UI;
 
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 /**
@@ -25,46 +22,6 @@ public class UI {
     private static Group mGroup;
     private static Tile[][] mTile;
     private static Scene mScene;
-    
-    /**
-     * Handler for Mouse movement interactions.
-     * Highlights currently hovered over Tile 
-     */
-    private static final EventHandler<MouseEvent> mMouseEvent = (MouseEvent event) -> {
-        EventType e = event.getEventType();
-        if (e == MouseEvent.MOUSE_ENTERED || e == MouseEvent.MOUSE_EXITED) {
-            Tile temp = (Tile) event.getSource();
-            flipFill(temp);
-        }
-    };
-    
-    /**
-     * Helper Method to flip Color Fills of Tile object(s)
-     * @param tiles an array of zero or more Tile objects
-     */
-    private static void flipFill(Tile... tiles) {
-        if (tiles == null) { return; }
-        
-        for (Tile tile : tiles) {
-            Color tempR = tile.getRectFill();
-            Color tempL = tile.getLabelFill();
-            
-            tile.setRectFill(tempL);
-            tile.setLabelFill(tempR);
-        }
-    }
-    
-    /**
-     * Handler for Mouse Click interactions
-     * Delegates click event based on Tile context (word, special bracket)
-     */
-    private static final EventHandler<MouseEvent> mClickEvent = (MouseEvent event) -> {
-        EventType e = event.getEventType();
-        if (e == MouseEvent.MOUSE_CLICKED) {
-            Tile temp = (Tile) event.getSource();
-            System.out.printf("You have clicked on Tile at position (%s,%s) with value '%s'\n", temp.getXCoord(), temp.getYCoord(), temp.getBaseChar());
-        }
-    };
     
     /**
      * Sets up the primary JavaFX window.
@@ -100,10 +57,6 @@ public class UI {
                     ' '                     // Starting Char
                 );
                 
-                tile.setOnMouseEntered(mMouseEvent);
-                tile.setOnMouseExited(mMouseEvent);
-                tile.setOnMouseClicked(mClickEvent);
-                
                 mTile[i][j] = tile;
             }
         }
@@ -119,6 +72,13 @@ public class UI {
     }
     
     /**
+     * Helper method to expose Scene for modification outside of display
+     * 
+     * @return the scene from JavaFX window
+     */
+    public static Scene getScene() { return mScene; }
+    
+    /**
      * Helper Method to get Tile at specified coordinates
      * 
      * @param x X-coordinate position in Tile grid
@@ -126,6 +86,13 @@ public class UI {
      * @return the Tile object at position (x, y)
      */
     public static Tile tileAt(int x, int y) { return mTile[x][y]; }
+    
+    /**
+     * Helper method to expose Tile grid for modification
+     * 
+     * @return the 2d Tile grid displayed on the window
+     */
+    public static Tile[][] getTiles() { return mTile; }
     
     /**
      * Updates Tile Grid with specified String.
@@ -161,6 +128,22 @@ public class UI {
     public static void clear() {
         for (Tile[] mRect : mTile) {
             for (Tile tile : mRect) { tile.setBaseChar(' '); }
+        }
+    }
+    
+    /**
+     * Helper Method to flip Color Fills of Tile object(s)
+     * @param tiles an array of zero or more Tile objects
+     */
+    public static void flipFill(Tile... tiles) {
+        if (tiles == null) { return; }
+        
+        for (Tile tile : tiles) {
+            Color tempR = tile.getRectFill();
+            Color tempL = tile.getLabelFill();
+            
+            tile.setRectFill(tempL);
+            tile.setLabelFill(tempR);
         }
     }
 }

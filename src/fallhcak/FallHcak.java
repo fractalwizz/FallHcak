@@ -3,6 +3,7 @@ package fallhcak;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import fallhcak.Control.Controller;
 import fallhcak.UI.UI;
 
 import java.util.Random;
@@ -20,6 +21,9 @@ public class FallHcak extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Fallout Hacking Mini-game");
         primaryStage.setScene(UI.initialize());
+        
+        Controller.initialize();
+        
         primaryStage.show();
         
         startProcess();
