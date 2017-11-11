@@ -36,7 +36,7 @@ public class FallHcak extends Application {
      * Initial Terminal setup, plus word list handles
      * Supports restarting the simulation if requested.
      */
-    private void startProcess() {
+    public static void startProcess() {
         UI.clear();
         
         Random rand = new Random();
@@ -63,7 +63,7 @@ public class FallHcak extends Application {
     /**
      * Helper Function that adds all Line Memory Addresses
      */
-    private void addMemAddr() {
+    private static void addMemAddr() {
         int dec = 3;
         
         Random rand = new Random();

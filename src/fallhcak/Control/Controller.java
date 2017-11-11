@@ -15,8 +15,9 @@ public class Controller {
         
         for (Tile[] tiles : UI.getTiles()) {
             for (Tile tile : tiles) {
-                tile.setOnMouseEntered(new EnterExitHandler());
-                tile.setOnMouseExited(new EnterExitHandler());
+                EnterExitHandler handle = new EnterExitHandler();
+                tile.setOnMouseEntered(handle);
+                tile.setOnMouseExited(handle);
                 tile.setOnMouseClicked(new TileClickHandler());
             }
         }
