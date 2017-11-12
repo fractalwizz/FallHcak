@@ -1,5 +1,11 @@
 package fallhcak.UI;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -62,6 +68,19 @@ public class UI {
         }
         
         for (Tile[] mRect1 : mTile) { mGroup.getChildren().addAll(mRect1); }
+        
+        // Show Current Time
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                LocalTime time = LocalTime.now();
+                String t = time.format(DateTimeFormatter.ofPattern("hh:mm:ss"));
+                
+                Platform.runLater(() -> { putString(45, 1, t, 45); });
+            }
+        };
+        
+        new Timer("").scheduleAtFixedRate(task, 1000, 1000);
         
         if (/*possible error error*/ TRIP_ERROR) {
             // TODO - return error-based scene
