@@ -58,8 +58,6 @@ public class UI {
                     y,                      // tile height
                     BACK,            // Rectangle Fill
                     FORE,            // Label Fill
-//                    getRandColor(),
-//                    ''
                     ' '                     // Starting Char
                 );
                 
@@ -76,7 +74,7 @@ public class UI {
                 LocalTime time = LocalTime.now();
                 String t = time.format(DateTimeFormatter.ofPattern("hh:mm:ss"));
                 
-                Platform.runLater(() -> { putString(45, 1, t, 45); });
+                Platform.runLater(() -> { putString(45, 1, t, 45, 53); });
             }
         };
         
@@ -117,20 +115,21 @@ public class UI {
      * Updates Tile Grid with specified String.
      * Supports wrapping of String around specified wrap Y-coordinate
      * 
-     * @param x      starting X-coordinate position in Tile grid
-     * @param y      starting Y-coordinate position in Tile grid
-     * @param string specified String to be printed
-     * @param wrap   X-coordinate position to resume printing on next line
+     * @param x       starting X-coordinate position in Tile grid
+     * @param y       starting Y-coordinate position in Tile grid
+     * @param string  specified String to be printed
+     * @param wrapX   X-coordinate position to resume printing on next line
+     * @param wrapLim X-coordinate position to wrap at
      */
-    public static void putString(int x, int y, String string, int wrap) {
+    public static void putString(int x, int y, String string, int wrapX, int wrapLim) {
         if (x < 0 || x >= mSizeX) { return; }
         if (y < 0 || y >= mSizeY) { return; }
         if (string.isEmpty()) { return; }
-        if (wrap >= mSizeX) { wrap = 0; }
+        if (wrapX >= mSizeX) { wrapX = 0; }
         
         for (char c : string.toCharArray()) {
-            if (x >= mSizeX) {
-                x = wrap;
+            if (x > wrapLim) {
+                x = wrapX;
                 y++;
             }
             if (y >= mSizeY) { return; }

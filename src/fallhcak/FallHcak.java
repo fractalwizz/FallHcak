@@ -42,8 +42,8 @@ public class FallHcak extends Application {
         Random rand = new Random();
         mLevel = rand.nextInt(12) + 4;
         
-        UI.putString(0, 0, "ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL", 0);
-        UI.putString(0, 1, "ENTER PASSWORD NOW", 0);
+        UI.putString(0, 0, "ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL", 0, 53);
+        UI.putString(0, 1, "ENTER PASSWORD NOW", 0, 53);
         
         String attempts = new StringBuilder("4 ATTEMPT(S) LEFT: ")
             .append(Character.toString((char) 9608))
@@ -55,7 +55,7 @@ public class FallHcak extends Application {
             .append(Character.toString((char) 9608))
             .toString();
         
-        UI.putString(0, 3, attempts, 0);
+        UI.putString(0, 3, attempts, 0, 53);
         
         addMemAddr();
     }
@@ -73,8 +73,8 @@ public class FallHcak extends Application {
         // IntConsumer
         IntStream.rangeClosed(5, 21).forEach((int y) -> {
             int num = ced + (y - 5) * 12;
-            UI.putString(0, y, "0x" + Integer.toHexString(num).toUpperCase(), 0);
-            UI.putString(20, y, "0x" + Integer.toHexString(num + 204).toUpperCase(), 0);
+            UI.putString(0, y, "0x" + Integer.toHexString(num).toUpperCase(), 0, 53);
+            UI.putString(20, y, "0x" + Integer.toHexString(num + 204).toUpperCase(), 0, 53);
         });
     }
 }
