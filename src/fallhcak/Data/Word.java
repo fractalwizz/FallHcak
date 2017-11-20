@@ -2,6 +2,8 @@ package fallhcak.Data;
 
 import fallhcak.UI.Tile;
 import fallhcak.UI.UI;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.util.Pair;
 
@@ -36,8 +38,10 @@ public class Word {
      * 
      * @return a Tile reference array for all word-related tiles
      */
-    public Tile[] getCoordList() {
+    public Tile[] getTileArray() {
         Tile[] list = new Tile[word.length()];
+        if (coord == null) { return null; }
+        
         int x = coord.getKey();
         int y = coord.getValue();
         
@@ -45,13 +49,32 @@ public class Word {
             if (x > 38) {
                 x = 27;
                 y++;
-            } else if (x > 18) {
+            } else if (x == 19) {
                 x = 7;
                 y++;
             }
             
             list[i] = UI.tileAt(x, y);
             x++;
+        }
+        
+        return list;
+    }
+    
+    /**
+     * Gets a List of Integer Pairs for Word Tile coordinates
+     * Extracts the information from getTileArray
+     * 
+     * @return a List of Coordinate Pairs composing a word
+     */
+    public List<Pair<Integer, Integer>> getCoordList() {
+        Tile[] arr = this.getTileArray();
+        if (arr == null) { return new ArrayList<>(); }
+        
+        List<Pair<Integer, Integer>> list = new ArrayList<>(arr.length);
+        
+        for (Tile tile : arr) {
+            list.add(new Pair<>(tile.getXCoord(), tile.getYCoord()));
         }
         
         return list;

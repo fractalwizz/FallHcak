@@ -145,7 +145,11 @@ public class UI {
      */
     public static void clear() {
         for (Tile[] mRect : mTile) {
-            for (Tile tile : mRect) { tile.setBaseChar(' '); }
+            for (Tile tile : mRect) {
+                tile.setBaseChar(' ');
+                tile.setRectFill(BACK);
+                tile.setLabelFill(FORE);
+            }
         }
     }
     

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import fallhcak.Control.Controller;
+import fallhcak.Data.DataHelper;
 import fallhcak.UI.UI;
 
 import java.util.Random;
@@ -16,13 +17,16 @@ import java.util.stream.IntStream;
  */
 public class FallHcak extends Application {
     private static int mLevel = 0;
+    private static DataHelper dataHelper;
     
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Fallout Hacking Mini-game");
         primaryStage.setScene(UI.initialize());
         
-        Controller.initialize();
+        dataHelper = new DataHelper();
+        
+        Controller.initialize(dataHelper);
         
         primaryStage.show();
         
@@ -58,6 +62,8 @@ public class FallHcak extends Application {
         UI.putString(0, 3, attempts, 0, 53);
         
         addMemAddr();
+        
+        dataHelper.setLevel(mLevel); // Create new DataSet
     }
     
     /**

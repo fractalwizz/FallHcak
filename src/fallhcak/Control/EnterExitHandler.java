@@ -1,5 +1,6 @@
 package fallhcak.Control;
 
+import fallhcak.Data.DataHelper;
 import fallhcak.UI.Tile;
 import fallhcak.UI.UI;
 
@@ -14,6 +15,10 @@ import javafx.scene.input.MouseEvent;
  * @author William Young
  */
 public class EnterExitHandler implements EventHandler<MouseEvent> {
+    private DataHelper refHelper;
+    
+    EnterExitHandler(DataHelper helper) { this.refHelper = helper; }
+    
     @Override
     public void handle(MouseEvent event) {
         EventType e = event.getEventType();
