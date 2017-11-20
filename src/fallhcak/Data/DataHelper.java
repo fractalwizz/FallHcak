@@ -1,5 +1,6 @@
 package fallhcak.Data;
 
+import fallhcak.Control.Controller;
 import fallhcak.UI.UI;
 
 import java.io.BufferedReader;
@@ -91,15 +92,10 @@ public class DataHelper {
         
         // TODO - Word Search through word.CoordList
         Word getWord(Pair<Integer, Integer> index) {
-//            List<Word> result = mData.stream()
-//                .filter(line -> index.equals(line.getCoords()))
-//                .collect(Collectors.toList());
-//            
-//            if (!result.isEmpty()) {
-//                return result.get(0);
-//            } else {
-//                return null;
-//            }
+            for (Word word : mData) {
+                if (word.getCoordList().contains(index)) { return word; }
+            }
+            
             return null;
         }
         
@@ -126,6 +122,8 @@ public class DataHelper {
                     
                     word.setCoords(new Pair<>(x, y));
                 } while (hasCollision(word));
+                
+                Controller.flipInWord(word.getTileArray());
                 
                 int lim = (x <= 18) ? 18 : 38;
                 int re = (x <= 18) ? 7 : 27;

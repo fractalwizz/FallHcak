@@ -22,8 +22,8 @@ public class UI {
     public static int mSizeX = 53;
     public static int mSizeY = 22;
     
-    private static final Color BACK = Color.BLACK;
-    private static final Color FORE = Color.rgb(42, 254, 141);
+    static final Color BACK = Color.BLACK;
+    static final Color FORE = Color.rgb(42, 254, 141);
     
     private static Group mGroup;
     private static Tile[][] mTile;
@@ -149,6 +149,7 @@ public class UI {
                 tile.setBaseChar(' ');
                 tile.setRectFill(BACK);
                 tile.setLabelFill(FORE);
+                tile.setInWord(false);
             }
         }
     }

@@ -19,6 +19,7 @@ public class Tile extends StackPane {
     private Color labelFill;
     private int x;
     private int y;
+    private boolean isInWord;
     
     /**
      * Tile Constructor.
@@ -57,6 +58,8 @@ public class Tile extends StackPane {
         
         this.getChildren().add(mRect);
         this.getChildren().add(mLabel);
+        
+        this.isInWord = false;
     }
     
     /**
@@ -93,4 +96,8 @@ public class Tile extends StackPane {
     
     public int getYCoord() { return y; }
     public void setYCoord(int y) { this.y = y; }
+    
+    public boolean isInWord() { return isInWord; }
+    public void setInWord(boolean inWord) { this.isInWord = inWord; }
+    public void invertWord() { isInWord = !isInWord; }
 }

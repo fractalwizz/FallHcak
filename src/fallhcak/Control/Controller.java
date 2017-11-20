@@ -24,4 +24,12 @@ public class Controller {
             }
         }
     }
+    
+    // TODO - Unlike flipFill, doesn't modify UI component of Tile/s
+    // Determine whether UI or here (or somewhere else) is best placement
+    public static void flipInWord(Tile... tiles) {
+        if (tiles == null) { return; }
+        
+        for (Tile tile : tiles) { tile.invertWord(); }
+    }
 }

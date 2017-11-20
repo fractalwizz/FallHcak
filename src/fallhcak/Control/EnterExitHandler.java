@@ -1,12 +1,14 @@
 package fallhcak.Control;
 
 import fallhcak.Data.DataHelper;
+import fallhcak.Data.Word;
 import fallhcak.UI.Tile;
 import fallhcak.UI.UI;
 
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Pair;
 
 /**
  * Handler for Mouse movement interactions.
@@ -24,8 +26,14 @@ public class EnterExitHandler implements EventHandler<MouseEvent> {
         EventType e = event.getEventType();
         if (e == MouseEvent.MOUSE_ENTERED || e == MouseEvent.MOUSE_EXITED) {
             // TODO - Handle Word + Bracket flipping
-            Tile temp = (Tile) event.getSource();
-            UI.flipFill(temp);
+            Tile tile = (Tile) event.getSource();
+            
+            if (tile.isInWord()) {
+                Word word = refHelper.getWord(new Pair<>(tile.getXCoord(), tile.getYCoord()));
+                UI.flipFill(word.getTileArray());
+            } else {
+                UI.flipFill(tile);
+            }
         }
     }
 }

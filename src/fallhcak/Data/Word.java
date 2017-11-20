@@ -30,7 +30,7 @@ public class Word {
     public String getWord() { return this.word; }
     public void setWord(String word) { this.word = word; }
     
-    public Pair<Integer, Integer> getCoords() { return this.coord; }
+    public Pair<Integer, Integer> getCoord() { return this.coord; }
     public void setCoords(Pair<Integer, Integer> coord) { this.coord = coord; }
     
     /**
