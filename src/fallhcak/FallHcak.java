@@ -44,7 +44,7 @@ public class FallHcak extends Application {
         UI.clear();
         
         Random rand = new Random();
-        mLevel = rand.nextInt(12) + 4;
+        mLevel = rand.nextInt(11) + 4;
         
         UI.putString(0, 0, "ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL", 0, 53);
         UI.putString(0, 1, "ENTER PASSWORD NOW", 0, 53);

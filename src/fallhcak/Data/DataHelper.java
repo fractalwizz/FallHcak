@@ -62,7 +62,7 @@ public class DataHelper {
     private class DataSet {
         List<Word> mData = new ArrayList<>();
         
-        DataSet(int level){
+        DataSet(int level) {
             String file = String.valueOf(level) + ".dat";
             String line;
             Random rand = new Random();
@@ -79,6 +79,7 @@ public class DataHelper {
                 e.printStackTrace();
             }
             
+            // TODO - SubList length based on level
             int len = mData.size();
             while (len >= mData.size()) {
                 len = rand.nextInt(9) + 3;
