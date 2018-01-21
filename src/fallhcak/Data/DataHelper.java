@@ -56,6 +56,9 @@ public class DataHelper {
         dataLevel = -1;
     }
     
+    // TODO - Refactor DataSet interaction
+    //      - Move file read, word collision out
+    //      - Better testing access
     /**
      * Internal Storage of Mini-game Data
      */
@@ -100,12 +103,16 @@ public class DataHelper {
             return null;
         }
         
+        // TODO - Find ArrayIndexOutOfBoundsException
+        // Includes NullPointerException for the dataSet
+        
         /**
          * Assign coordinates for each word in the DataSet
          * Includes Collision-prevention
          */
         final void setCoords() {
             final Random rnd = new Random();
+            // O(N^2)? operation - Contemplate faster approach
             mData.stream().forEach(word -> {
                 int x, y;
                 

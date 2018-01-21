@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
  * @author William Young
  */
 public class UI {
+    // TODO - Complete constants + abstract instantiation (initialize)
     private static boolean TRIP_ERROR = false;
     public static int mWidth = 795;
     public static int mHeight = 550; // 330
@@ -111,6 +112,7 @@ public class UI {
      */
     public static Tile[][] getTiles() { return mTile; }
     
+    // TODO - Fix wrapLim IndexOutOfBounds conditions
     /**
      * Updates Tile Grid with specified String.
      * Supports wrapping of String around specified wrap Y-coordinate
